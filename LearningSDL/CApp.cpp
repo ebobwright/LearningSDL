@@ -55,6 +55,10 @@ bool CApp::OnInit()
  
 void CApp::OnEvent(SDL_Event* Event) 
 {
+	if(Event->type == SDL_QUIT) 
+	{
+        _running = false;
+    }
 }
 
 void CApp::OnLoop() 
@@ -78,6 +82,7 @@ void CApp::OnRender()
  
 void CApp::OnCleanup() 
 {
+	SDL_Quit();
 }
 
 #pragma region main and message pump
