@@ -8,13 +8,25 @@ protected:
 	
 	EntitySystem* _entitySystem;
 
-public:
-	CApp();
-	int OnExecute(); 
+	void RegisterEventHandlers();
+	void RegisterSystems();
+	
+	typedef void (CApp::*tyMessageHandler)(void);
+	typedef std::map<Uint8, tyMessageHandler> tyMessageMap;
+	typedef tyMessageMap::iterator tyMessageIterator;	
+	tyMessageHandler GetMessageHandler(Uint8 message);
+	tyMessageHandler RegisterMessageHandler(Uint8 message, tyMessageHandler handler);	
+	tyMessageMap m_MsgHandlers;
+
+	void Quit();
+
 	bool OnInit();
 	void OnEvent(SDL_Event* Event);
 	void OnLoop(); 	
 	void OnCleanup();
+
+public:	
+	int OnExecute(); 
 };
  
 #endif

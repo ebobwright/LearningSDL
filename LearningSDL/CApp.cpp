@@ -2,24 +2,66 @@
 #include "RenderingSystem.h"
 #include "CApp.h"
 
-#pragma region Constructor
+#pragma region Setup Methods
 
-CApp::CApp(void)
+void CApp::RegisterEventHandlers()
 {
+	this->RegisterMessageHandler(SDL_QUIT, &CApp::Quit);
+}
+
+void CApp::RegisterSystems()
+{
+	_entitySystem->RegisterSystem(new RenderingSystem()); //Always Register Rendering System Last
 }
 
 #pragma endregion
 
+#pragma region Event Handlers
+
+void CApp::Quit(void)
+{
+	_running = false;
+}
+
+#pragma endregion
+
+#pragma region Message Handler Registration
+
+CApp::tyMessageHandler CApp::GetMessageHandler(Uint8 message)
+{	
+	CApp::tyMessageIterator it = m_MsgHandlers.find(message);
+	if(it == m_MsgHandlers.end())
+		return NULL;
+	return ((it->second));
+}
+
+CApp::tyMessageHandler CApp::RegisterMessageHandler(Uint8 message, CApp::tyMessageHandler handler)
+{
+	CApp::tyMessageHandler m = NULL;
+	CApp::tyMessageIterator it = m_MsgHandlers.find(message);
+	
+	if(it != m_MsgHandlers.end())
+		m = it->second;
+	
+	m_MsgHandlers.insert(std::pair<long,tyMessageHandler>(message, handler));
+
+	return m;
+}
+
+#pragma endregion
+
+#pragma region main and message pump
+
 bool CApp::OnInit() 
 {
-	this->_entitySystem = EntitySystem::GetInstance();
+	_entitySystem = EntitySystem::GetInstance();
 
-	//Register Entities
-	this->_entitySystem->RegisterSystem(new RenderingSystem()); //Always Register Rendering System Last
+	RegisterEventHandlers();
+	RegisterSystems();
 	
 	try
 	{
-		this->_entitySystem->InitializeSystems();   
+		_entitySystem->InitializeSystems();   
 	}
 	catch(...)
 	{
@@ -30,24 +72,23 @@ bool CApp::OnInit()
 }
  
 void CApp::OnEvent(SDL_Event* Event) 
-{
-	if(Event->type == SDL_QUIT) 
+{	
+	tyMessageHandler mh = GetMessageHandler(Event->type);
+	if(mh != NULL)
 	{
-        _running = false;
-    }
+		(this->*(mh))();			
+	}
 }
 
 void CApp::OnLoop() 
 {
-	this->_entitySystem->UpdateSystems();
+	_entitySystem->UpdateSystems();
 }
 
 void CApp::OnCleanup() 
 {
-	this->_entitySystem->KillSystems();
+	_entitySystem->KillSystems();
 }
-
-#pragma region main and message pump
 
 int CApp::OnExecute() 
 {
