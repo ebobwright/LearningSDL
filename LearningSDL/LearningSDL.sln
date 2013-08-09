@@ -2,6 +2,11 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C++ Express 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LearningSDL", "LearningSDL.vcxproj", "{266D513D-13E5-453F-8418-E0628AA8B146}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D81FF7FA-1FAB-467E-9F3F-8BB64B0FCEA0} = {D81FF7FA-1FAB-467E-9F3F-8BB64B0FCEA0}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EBSys", "..\EBSys\EBSys.vcxproj", "{D81FF7FA-1FAB-467E-9F3F-8BB64B0FCEA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +18,10 @@ Global
 		{266D513D-13E5-453F-8418-E0628AA8B146}.Debug|Win32.Build.0 = Debug|Win32
 		{266D513D-13E5-453F-8418-E0628AA8B146}.Release|Win32.ActiveCfg = Release|Win32
 		{266D513D-13E5-453F-8418-E0628AA8B146}.Release|Win32.Build.0 = Release|Win32
+		{D81FF7FA-1FAB-467E-9F3F-8BB64B0FCEA0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D81FF7FA-1FAB-467E-9F3F-8BB64B0FCEA0}.Debug|Win32.Build.0 = Debug|Win32
+		{D81FF7FA-1FAB-467E-9F3F-8BB64B0FCEA0}.Release|Win32.ActiveCfg = Release|Win32
+		{D81FF7FA-1FAB-467E-9F3F-8BB64B0FCEA0}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
