@@ -10,6 +10,8 @@ protected:
 
 	void RegisterEventHandlers();
 	void RegisterSystems();
+
+	void TestCode();
 	
 	typedef void (CApp::*tyMessageHandler)(void);
 	typedef std::map<Uint8, tyMessageHandler> tyMessageMap;

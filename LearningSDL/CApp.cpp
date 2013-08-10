@@ -1,4 +1,8 @@
 #include "..\\EBSys\\EBSys.h"
+
+#include <glm/glm.hpp>
+#include "Position.h"
+#include "Renderable.h"
 #include "RenderingSystem.h"
 #include "CApp.h"
 
@@ -12,6 +16,20 @@ void CApp::RegisterEventHandlers()
 void CApp::RegisterSystems()
 {
 	_entitySystem->RegisterSystem(new RenderingSystem()); //Always Register Rendering System Last
+}
+
+void CApp::TestCode()
+{
+	/***** TESTING ******/
+	Entity* testEntity = _entitySystem->CreateEntity();
+	testEntity->EntityName = "Test Entity";
+
+	Position* testPosition = new Position();
+	testPosition->PositionVector = glm::vec3(50,50,0);
+	_entitySystem->AddComponent(testEntity, testPosition);
+
+	Renderable* testRenderable = new Renderable();
+	_entitySystem->AddComponent(testEntity, testRenderable);
 }
 
 #pragma endregion
@@ -58,6 +76,8 @@ bool CApp::OnInit()
 
 	RegisterEventHandlers();
 	RegisterSystems();
+
+	TestCode();
 	
 	try
 	{

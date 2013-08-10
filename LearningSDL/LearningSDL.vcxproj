@@ -37,7 +37,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\Local Source\SDL\SDL-1.2.15\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Local Source\GLM\glm-0.9.4.4;D:\Local Source\SDL\SDL-1.2.15\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LibraryPath>D:\Local Source\SDL\SDL-1.2.15\lib\x86;$(LibraryPath)</LibraryPath>
@@ -69,6 +69,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CApp.h" />
+    <ClInclude Include="Position.h" />
+    <ClInclude Include="Renderable.h" />
     <ClInclude Include="RenderingSystem.h" />
   </ItemGroup>
   <ItemGroup>

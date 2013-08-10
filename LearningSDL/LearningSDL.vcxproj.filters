@@ -1,17 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Systems">
+      <UniqueIdentifier>{b4405ab7-5b06-48ca-bdf1-3cef799ba1e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systems\Header Files">
+      <UniqueIdentifier>{2af0528b-75b0-4cf8-8da5-2bc839fce781}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systems\Source Files">
+      <UniqueIdentifier>{1006c9c8-3253-412b-987f-69d71ed6009c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="SystemComponents">
+      <UniqueIdentifier>{edf90fbd-b9c2-4788-afb9-de40325f2432}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -19,7 +31,13 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RenderingSystem.h">
-      <Filter>Header Files</Filter>
+      <Filter>Systems\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Position.h">
+      <Filter>SystemComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderable.h">
+      <Filter>SystemComponents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -27,7 +45,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RenderingSystem.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Systems\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

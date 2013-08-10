@@ -15,11 +15,13 @@ class RenderingSystem : public BaseSystem
 {
 protected:
 	SDL_Surface* _displaySurface;
-
-public:
+	EntitySystem* _entitySystem;
+public:	
 	void Initialize();
 	void Update();
 	void Kill();
+
+
 };
 
 #endif
