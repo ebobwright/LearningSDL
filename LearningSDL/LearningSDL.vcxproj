@@ -68,12 +68,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="CApp.h" />
+    <ClInclude Include="consolidated.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="Renderable.h" />
     <ClInclude Include="RenderingSystem.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CApp.cpp" />
     <ClCompile Include="RenderingSystem.cpp" />
   </ItemGroup>

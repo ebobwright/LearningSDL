@@ -1,10 +1,4 @@
-#include "..\\EBSys\\EBSys.h"
-
-#include <glm/glm.hpp>
-#include "Position.h"
-#include "Renderable.h"
-#include "RenderingSystem.h"
-#include "CApp.h"
+#include "consolidated.h"
 
 #pragma region Setup Methods
 
@@ -14,7 +8,7 @@ void CApp::RegisterEventHandlers()
 }
 
 void CApp::RegisterSystems()
-{
+{	
 	_entitySystem->RegisterSystem(new RenderingSystem()); //Always Register Rendering System Last
 }
 
@@ -36,7 +30,7 @@ void CApp::TestCode()
 
 #pragma region Event Handlers
 
-void CApp::Quit(void)
+void CApp::Quit(SDL_Event* Event)
 {
 	_running = false;
 }
@@ -96,7 +90,7 @@ void CApp::OnEvent(SDL_Event* Event)
 	tyMessageHandler mh = GetMessageHandler(Event->type);
 	if(mh != NULL)
 	{
-		(this->*(mh))();			
+		(this->*(mh))(Event);			
 	}
 }
 
@@ -124,6 +118,7 @@ int CApp::OnExecute()
         while(SDL_PollEvent(&Event)) 
 		{
             OnEvent(&Event);
+			
         }
  
         OnLoop();        

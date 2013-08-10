@@ -13,14 +13,14 @@ protected:
 
 	void TestCode();
 	
-	typedef void (CApp::*tyMessageHandler)(void);
+	typedef void (CApp::*tyMessageHandler)(SDL_Event*);
 	typedef std::map<Uint8, tyMessageHandler> tyMessageMap;
 	typedef tyMessageMap::iterator tyMessageIterator;	
 	tyMessageHandler GetMessageHandler(Uint8 message);
 	tyMessageHandler RegisterMessageHandler(Uint8 message, tyMessageHandler handler);	
 	tyMessageMap m_MsgHandlers;
 
-	void Quit();
+	void Quit(SDL_Event* Event);
 
 	bool OnInit();
 	void OnEvent(SDL_Event* Event);

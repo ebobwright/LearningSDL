@@ -1,13 +1,10 @@
-#include "..\\EBSys\\EBSys.h"
-
-#include <glm/glm.hpp>
-#include "Position.h"
-#include "Renderable.h"
-#include "RenderingSystem.h"
+#include "consolidated.h"
 
 void RenderingSystem::Initialize()
 {
 	_entitySystem = EntitySystem::GetInstance();
+
+	_activeCamera = new Camera();
 
 	if(SDL_Init(SDL_INIT_EVERYTHING) < 0) 
 	{		
@@ -61,7 +58,7 @@ void RenderingSystem::Update()
 	glLoadIdentity();
 	
 	//CAMERA
-	//glTranslatef(0 - m_Camera->x, 0 - m_Camera->y, 0 - m_Camera->z);	
+	glTranslatef(0 - _activeCamera->CameraPosition.x, 0 - _activeCamera->CameraPosition.y, 0 - _activeCamera->CameraPosition.z);	
 	glRotatef(0, 0, 0, 1);
 
 	std::set<Entity*>::const_iterator it = renderables.begin();

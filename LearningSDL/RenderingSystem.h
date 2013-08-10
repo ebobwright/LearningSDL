@@ -16,12 +16,13 @@ class RenderingSystem : public BaseSystem
 protected:
 	SDL_Surface* _displaySurface;
 	EntitySystem* _entitySystem;
+	
 public:	
 	void Initialize();
 	void Update();
-	void Kill();
+	void Kill();	
 
-
+	Camera* _activeCamera;
 };
 
 #endif
