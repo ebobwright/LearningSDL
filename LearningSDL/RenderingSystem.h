@@ -2,9 +2,6 @@
 #define _RENDERINGSYSTEM_ 
 #pragma once
  
-#include <SDL.h>
-#include "SDL_OpenGL.h" 
-
 /*******************************************************
 *File:		RenderingSystem.h
 *Author:	E. Bob Wright

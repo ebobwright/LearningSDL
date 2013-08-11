@@ -11,6 +11,8 @@ class Renderable : public Component
 {
 public:
 	static const int familyId = 2;
+
+	SimpleRenderable* Appearance;
 };
 
 #endif

@@ -69,16 +69,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="CApp.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="consolidated.h" />
+    <ClInclude Include="Keyboard.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="Renderable.h" />
     <ClInclude Include="RenderingSystem.h" />
+    <ClInclude Include="SimpleRenderable.h" />
+    <ClInclude Include="UserControlSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="CApp.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="RenderingSystem.cpp" />
+    <ClCompile Include="SimpleRenderable.cpp" />
+    <ClCompile Include="UserControlSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EBSys\EBSys.vcxproj">

@@ -2,17 +2,20 @@
 
 #pragma region Setup Methods
 
-void CApp::RegisterEventHandlers()
+void Game::RegisterEventHandlers()
 {
-	this->RegisterMessageHandler(SDL_QUIT, &CApp::Quit);
+	this->RegisterMessageHandler(SDL_QUIT, &Game::Quit);
+	this->RegisterMessageHandler(SDL_KEYDOWN, &Game::KeyDown);
+	this->RegisterMessageHandler(SDL_KEYUP, &Game::KeyUp);
 }
 
-void CApp::RegisterSystems()
+void Game::RegisterSystems()
 {	
+	_entitySystem->RegisterSystem(new UserControlSystem());
 	_entitySystem->RegisterSystem(new RenderingSystem()); //Always Register Rendering System Last
 }
 
-void CApp::TestCode()
+void Game::TestCode()
 {
 	/***** TESTING ******/
 	Entity* testEntity = _entitySystem->CreateEntity();
@@ -30,27 +33,37 @@ void CApp::TestCode()
 
 #pragma region Event Handlers
 
-void CApp::Quit(SDL_Event* Event)
-{
+void Game::Quit(SDL_Event* Event)
+{	
 	_running = false;
+}
+
+void Game::KeyDown(SDL_Event* Event)
+{
+	_keyBoard->SetKey(Event->key.keysym.sym, true);	
+}
+
+void Game::KeyUp(SDL_Event* Event)
+{
+	_keyBoard->SetKey(Event->key.keysym.sym, false);
 }
 
 #pragma endregion
 
 #pragma region Message Handler Registration
 
-CApp::tyMessageHandler CApp::GetMessageHandler(Uint8 message)
+Game::tyMessageHandler Game::GetMessageHandler(Uint8 message)
 {	
-	CApp::tyMessageIterator it = m_MsgHandlers.find(message);
+	Game::tyMessageIterator it = m_MsgHandlers.find(message);
 	if(it == m_MsgHandlers.end())
 		return NULL;
 	return ((it->second));
 }
 
-CApp::tyMessageHandler CApp::RegisterMessageHandler(Uint8 message, CApp::tyMessageHandler handler)
+Game::tyMessageHandler Game::RegisterMessageHandler(Uint8 message, Game::tyMessageHandler handler)
 {
-	CApp::tyMessageHandler m = NULL;
-	CApp::tyMessageIterator it = m_MsgHandlers.find(message);
+	Game::tyMessageHandler m = NULL;
+	Game::tyMessageIterator it = m_MsgHandlers.find(message);
 	
 	if(it != m_MsgHandlers.end())
 		m = it->second;
@@ -64,9 +77,9 @@ CApp::tyMessageHandler CApp::RegisterMessageHandler(Uint8 message, CApp::tyMessa
 
 #pragma region main and message pump
 
-bool CApp::OnInit() 
+bool Game::OnInit() 
 {
-	_entitySystem = EntitySystem::GetInstance();
+	_entitySystem = EntitySystem::GetInstance();		
 
 	RegisterEventHandlers();
 	RegisterSystems();
@@ -85,7 +98,7 @@ bool CApp::OnInit()
 	return true;
 }
  
-void CApp::OnEvent(SDL_Event* Event) 
+void Game::OnEvent(SDL_Event* Event) 
 {	
 	tyMessageHandler mh = GetMessageHandler(Event->type);
 	if(mh != NULL)
@@ -94,17 +107,17 @@ void CApp::OnEvent(SDL_Event* Event)
 	}
 }
 
-void CApp::OnLoop() 
+void Game::OnLoop() 
 {
 	_entitySystem->UpdateSystems();
 }
 
-void CApp::OnCleanup() 
+void Game::OnCleanup() 
 {
 	_entitySystem->KillSystems();
 }
 
-int CApp::OnExecute() 
+int Game::OnExecute() 
 {
     if(OnInit() == false) 
 	{
@@ -131,8 +144,13 @@ int CApp::OnExecute()
  
 int main(int argc, char* argv[]) 
 {
-    CApp theApp; 
+    Game theApp; 
     return theApp.OnExecute();
 }
 
 #pragma endregion
+
+Keyboard* Game::GetKeyboard()
+{
+	return _keyBoard;
+}
