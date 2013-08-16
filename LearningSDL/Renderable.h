@@ -7,12 +7,10 @@
 *Date:		
 *Notes:		
 *******************************************************/
-class Renderable : public Component
+struct Renderable : public Component
 {
 public:
-	static const int familyId = 2;
-
-	SimpleRenderable* Appearance;
+	static const int familyId = 2;	
 };
 
 #endif

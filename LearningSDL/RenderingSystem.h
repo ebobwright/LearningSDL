@@ -13,13 +13,13 @@ class RenderingSystem : public BaseSystem
 protected:
 	SDL_Surface* _displaySurface;
 	EntitySystem* _entitySystem;
-	
+
+	Position* _camera;
+
 public:	
 	void Initialize();
-	void Update();
+	void Update(std::set<Entity*> renderables);
 	void Kill();	
-
-	Camera* _activeCamera;
 };
 
 #endif

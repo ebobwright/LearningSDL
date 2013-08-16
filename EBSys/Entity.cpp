@@ -6,18 +6,7 @@
 *******************************************************/
 #include "EBSys.h"
 
-/*******************************************************
-Constructor (and Destructor)
-*******************************************************/
-Entity::Entity()
-{
-}
-
 Entity::Entity(int NewEntityID)
 {
 	this->EntityID = NewEntityID;
-}
-
-Entity::~Entity(void)
-{
 }

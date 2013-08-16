@@ -10,9 +10,7 @@
 class ENTITYSYSTEM_API Entity
 {
 public:
-	Entity();
 	Entity(int NewEntityID);
-	~Entity(void);
 
 	int EntityID; //Unique Identifier for each Entity
 	std::string EntityName; //Friendly way to reference an Entity

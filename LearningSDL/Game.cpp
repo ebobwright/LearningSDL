@@ -11,13 +11,18 @@ void Game::RegisterEventHandlers()
 
 void Game::RegisterSystems()
 {	
-	_entitySystem->RegisterSystem(new UserControlSystem());
-	_entitySystem->RegisterSystem(new RenderingSystem()); //Always Register Rendering System Last
+	UserControlSystem* userControlSystem = new UserControlSystem();
+	userControlSystem->SetKeyboard(&_keyboard);
+	userControlSystem->SetMouse(&_mouse);
+	_entitySystem->RegisterSystem(userControlSystem, UserControllable::familyId);
+
+	RenderingSystem* renderingSystem = new RenderingSystem();	
+	_entitySystem->RegisterSystem(renderingSystem, Renderable::familyId); //Always Register Rendering System Last
 }
 
 void Game::TestCode()
 {
-	/***** TESTING ******/
+	/***** TESTING ******/	
 	Entity* testEntity = _entitySystem->CreateEntity();
 	testEntity->EntityName = "Test Entity";
 
@@ -40,12 +45,12 @@ void Game::Quit(SDL_Event* Event)
 
 void Game::KeyDown(SDL_Event* Event)
 {
-	_keyBoard->SetKey(Event->key.keysym.sym, true);	
+	_keyboard.SetKey(Event->key.keysym.sym, true);	
 }
 
 void Game::KeyUp(SDL_Event* Event)
 {
-	_keyBoard->SetKey(Event->key.keysym.sym, false);
+	_keyboard.SetKey(Event->key.keysym.sym, false);
 }
 
 #pragma endregion
@@ -144,13 +149,8 @@ int Game::OnExecute()
  
 int main(int argc, char* argv[]) 
 {
-    Game theApp; 
+    Game theApp;
     return theApp.OnExecute();
 }
 
 #pragma endregion
-
-Keyboard* Game::GetKeyboard()
-{
-	return _keyBoard;
-}

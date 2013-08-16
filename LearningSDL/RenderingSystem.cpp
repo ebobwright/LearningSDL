@@ -4,7 +4,14 @@ void RenderingSystem::Initialize()
 {
 	_entitySystem = EntitySystem::GetInstance();
 
-	_activeCamera = new Camera();
+	Entity* camera = _entitySystem->CreateEntity();
+	camera->EntityName = "camera";
+	_camera = new Position();
+	_camera->PositionVector = glm::vec3(0,0,0);
+	_entitySystem->AddComponent(camera, _camera);
+	UserControllable* cameraControls = new UserControllable();
+	_entitySystem->AddComponent(camera, cameraControls);
+
 
 	if(SDL_Init(SDL_INIT_EVERYTHING) < 0) 
 	{		
@@ -49,16 +56,13 @@ void RenderingSystem::Initialize()
     glLoadIdentity(); 
 }
 
-void RenderingSystem::Update()
+void RenderingSystem::Update(std::set<Entity*> renderables)
 {
-	std::set<Entity*> renderables;
-	_entitySystem->GetEntities<Renderable>(renderables);	
-
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);			// Clear The Screen And The Depth Buffer
 	glLoadIdentity();
 	
 	//CAMERA
-	glTranslatef(0 - _activeCamera->CameraPosition.x, 0 - _activeCamera->CameraPosition.y, 0 - _activeCamera->CameraPosition.z);	
+	glTranslatef(0 - _camera->PositionVector.x, 0 - _camera->PositionVector.y, 0 - _camera->PositionVector.z);	
 	glRotatef(0, 0, 0, 1);
 
 	std::set<Entity*>::const_iterator it = renderables.begin();

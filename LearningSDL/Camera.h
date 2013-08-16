@@ -1,10 +1,10 @@
 #pragma once
-class Camera
+class Camera: public Component
 {
-public:
-	Camera(void);
-	~Camera(void);
+public:	
+	static const int familyId = 3;	
 
+	bool ActiveCamera;
 	glm::vec3 CameraPosition;
 };
 

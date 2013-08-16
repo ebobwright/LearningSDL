@@ -7,7 +7,7 @@
 *Date:		08/09/2013
 *Notes:		
 *******************************************************/
-class Position : public Component
+struct Position : public Component
 {
 public:
 	static const int familyId = 1;	

@@ -15,7 +15,7 @@
 #include <set>
 #include <vector>
 
+#include "Entity.h"
 #include "BaseSystem.h"
 #include "Component.h"
-#include "Entity.h"
 #include "EntitySystem.h"

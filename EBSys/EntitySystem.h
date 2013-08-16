@@ -14,7 +14,7 @@ public:
 	Entity* GetEntity(int id);
     void KillEntity(int id);
 
-	void RegisterSystem(BaseSystem* newSystem);
+	void RegisterSystem(BaseSystem* newSystem, int componentFamilyId);
 	void InitializeSystems();
 	void UpdateSystems();
 	void KillSystems();
@@ -54,6 +54,6 @@ protected:
 	std::map<int, Entity*> _entities;
 	std::map<int, std::map<Entity*, Component*> > _componentStores;
 
-	std::vector<BaseSystem*> _systems;
+	std::vector<std::pair<int, BaseSystem*>> _systems;
 };
 #endif //_ENTITYSYSTEM_

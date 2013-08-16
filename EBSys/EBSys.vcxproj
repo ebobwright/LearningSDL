@@ -81,7 +81,6 @@
     <ClInclude Include="EntitySystem.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Component.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntitySystem.cpp" />
   </ItemGroup>

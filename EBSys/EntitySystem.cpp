@@ -42,17 +42,17 @@ void EntitySystem::KillEntity(int id)
 	  _entities.erase(toKill);      
  }
 
-void EntitySystem::RegisterSystem(BaseSystem* newSystem)
+void EntitySystem::RegisterSystem(BaseSystem* newSystem, int componentFamilyId)
 {
-	this->_systems.push_back(newSystem);
+	this->_systems.push_back(std::pair<int, BaseSystem*>(componentFamilyId, newSystem));
 }
 
 void EntitySystem::InitializeSystems()
 {
 	for(int i = 0; i < (int)_systems.size(); i++)
 	{
-		BaseSystem* currentSystem = _systems[i];
-		currentSystem->Initialize();		
+		std::pair<int, BaseSystem*> currentSystem = _systems[i];
+		currentSystem.second->Initialize();		
 	}
 }
 
@@ -60,8 +60,15 @@ void EntitySystem::UpdateSystems()
 {
 	for(int i = 0; i < (int)_systems.size(); i++)
 	{
-		BaseSystem* currentSystem = _systems[i];
-		currentSystem->Update();		
+		std::set<Entity*> result;
+		std::pair<int, BaseSystem*> currentSystem = _systems[i];				
+		std::map<Entity*, Component*> m = _componentStores[currentSystem.first];		
+		std::map<Entity*, Component*>::const_iterator it = m.begin();
+		std::map<Entity*, Component*>::const_iterator end = m.end();
+		for( ; it != end; it++)
+			result.insert(it->first);
+		
+		currentSystem.second->Update(result);		
 	}
 }
 
@@ -69,7 +76,7 @@ void EntitySystem::KillSystems()
 {
 	for(int i = 0; i < (int)_systems.size(); i++)
 	{
-		BaseSystem* currentSystem = _systems[i];
-		currentSystem->Kill();		
+		std::pair<int, BaseSystem*> currentSystem = _systems[i];
+		currentSystem.second->Kill();		
 	}
 }

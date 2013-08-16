@@ -7,7 +7,9 @@ protected:
 	bool _running;
 		
 	EntitySystem* _entitySystem;
-	Keyboard* _keyBoard;
+
+	Keyboard _keyboard;
+	Mouse _mouse;
 
 	void RegisterEventHandlers();
 	void RegisterSystems();
@@ -32,8 +34,6 @@ protected:
 
 public:	
 	int OnExecute(); 
-
-	Keyboard* GetKeyboard();
 };
  
 #endif

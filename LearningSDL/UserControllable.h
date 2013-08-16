@@ -1,16 +1,16 @@
-#ifndef _COMPONENT_
-#define _COMPONENT_ 
+#ifndef _USERCONTROLLABLE_
+#define _USERCONTROLLABLE_ 
 #pragma once
 /*******************************************************
-*File:		Component.h
+*File:		UserControllable.h
 *Author:	E. Bob Wright
-*Date:		12/16/2010
+*Date:		
 *Notes:		
 *******************************************************/
-struct ENTITYSYSTEM_API Component
+struct UserControllable : public Component
 {
 public:
-	static const int familyId = 0;
+	static const int familyId = 3;	
 };
 
 #endif

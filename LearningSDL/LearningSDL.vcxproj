@@ -68,22 +68,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="consolidated.h" />
     <ClInclude Include="Keyboard.h" />
+    <ClInclude Include="Mouse.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="Renderable.h" />
     <ClInclude Include="RenderingSystem.h" />
-    <ClInclude Include="SimpleRenderable.h" />
+    <ClInclude Include="Screen.h" />
+    <ClInclude Include="UserControllable.h" />
     <ClInclude Include="UserControlSystem.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Keyboard.cpp" />
+    <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="RenderingSystem.cpp" />
-    <ClCompile Include="SimpleRenderable.cpp" />
+    <ClCompile Include="Screen.cpp" />
     <ClCompile Include="UserControlSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
